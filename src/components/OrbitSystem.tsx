@@ -26,9 +26,9 @@ const DESIGN = 520;
 const CENTER = DESIGN / 2;
 const TILT = -14;
 const RINGS = [
-  { rx: 124, ry: 96, speed: 2.2 },
-  { rx: 174, ry: 132, speed: -1.35 },
-  { rx: 222, ry: 166, speed: 0.9 },
+  { rx: 124, ry: 96, speed: 3.4 },
+  { rx: 174, ry: 132, speed: -2.2 },
+  { rx: 222, ry: 166, speed: 1.5 },
 ] as const;
 
 const TICKS = Array.from({ length: 72 }, (_, index) => {
@@ -60,7 +60,6 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
   const angle1 = useMotionValue(0);
   const angle2 = useMotionValue(0);
 
-  const paused = useRef(false);
   const dragging = useRef(false);
   const moved = useRef(false);
   const captured = useRef(false);
@@ -90,7 +89,7 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
       velocity.current = 0;
     }
 
-    if (paused.current || dragging.current) return;
+    if (dragging.current) return;
 
     angle0.set(angle0.get() + RINGS[0].speed * dt);
     angle1.set(angle1.get() + RINGS[1].speed * dt);
@@ -213,20 +212,10 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
-      onPointerEnter={(event) => {
-        if (event.pointerType === "mouse") paused.current = true;
-      }}
       onPointerLeave={(event) => {
-        paused.current = false;
         tiltX.set(0);
         tiltY.set(0);
         if (dragging.current) endDrag(event);
-      }}
-      onFocusCapture={() => {
-        paused.current = true;
-      }}
-      onBlurCapture={() => {
-        paused.current = false;
       }}
       onClickCapture={onClickCapture}
     >

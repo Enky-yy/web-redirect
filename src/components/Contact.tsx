@@ -76,7 +76,7 @@ export function Contact() {
         <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="meta-label text-rust">03</span>
+              <span className="meta-label text-rust">04</span>
               <span className="meta-label text-muted">Contact</span>
             </div>
 
@@ -87,25 +87,46 @@ export function Contact() {
               Say <span className="italic text-rust">hello</span>.
             </h2>
 
-            <p className="mt-7 max-w-[36ch] text-[1.0625rem] leading-[1.65] text-ink/65">
-              Freelance work, a collaboration worth starting, or a record worth hearing. I read
-              everything that lands here.
+            <p className="mt-7 max-w-[38ch] text-[1.0625rem] leading-[1.65] text-ink/65">
+              I am looking for AI engineering internships and open-source collaborators. If you
+              are working on machine learning, agents, or automation, I would like to hear about
+              it.
             </p>
           </div>
 
           <div className="flex flex-col items-start gap-8">
-            <a
-              href={`mailto:${profile.email}`}
-              className="mail-link group relative inline-flex max-w-full items-center gap-3 font-serif text-[clamp(1.7rem,4.4vw,3.4rem)] leading-none tracking-[-0.01em]"
-            >
-              <span className="break-all">{profile.email}</span>
-              <ArrowUpRight
-                size={22}
-                weight="light"
-                className="shrink-0 text-rust transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
+            <div className="flex flex-col items-start gap-4">
+              <a
+                href={`mailto:${profile.email}`}
+                className="mail-link group relative inline-flex max-w-full items-center gap-3 font-serif text-[clamp(1.7rem,4.4vw,3.4rem)] leading-none tracking-[-0.01em]"
+              >
+                <span className="break-all">{profile.email}</span>
+                <ArrowUpRight
+                  size={22}
+                  weight="light"
+                  className="shrink-0 text-rust transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
+
+              {profile.whatsapp ? (
+                <a
+                  href={profile.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors duration-300 hover:text-ink"
+                >
+                  <span className="h-1 w-1 rounded-full bg-rust" aria-hidden="true" />
+                  WhatsApp
+                  <ArrowUpRight
+                    size={12}
+                    weight="light"
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              ) : null}
+            </div>
 
             <CopyEmail />
           </div>

@@ -36,19 +36,20 @@ export const profile = {
   overline: "Personal index",
   volume: "Vol. 01",
   tagline:
-    "I design and build web interfaces for a living. Everything else I care about is filed below.",
-  location: "Kolkata, India",
-  based: "Based in Kolkata. Working everywhere.",
-  coordinates: "22.5726° N · 88.3639° E",
+    "Undergraduate working across AI/ML and agentic automation. I build pipelines, read about LLMs, and ship in the open.",
+  location: "Varanasi, India",
+  based: "Based in Varanasi. Working everywhere.",
+  coordinates: "25.3176° N · 82.9739° E",
   timeZone: "Asia/Kolkata",
   timeZoneLabel: "IST",
   email: "contact@harsh-shah.me",
-  status: "Available for select work",
+  whatsapp: "",
+  status: "Open to internships",
   descriptors: [
-    "building quiet interfaces",
-    "listening in lossless",
-    "losing to roguelikes",
-    "collecting keyboards",
+    "building AI/ML pipelines",
+    "wiring agents together",
+    "reading about LLMs",
+    "shipping open source",
   ],
   footerNote: "No cookies. No trackers. One page.",
 };
@@ -162,21 +163,44 @@ export const orbitLinks = allLinks.filter((link) => link.orbit);
 
 export const now = [
   {
-    id: "listening",
-    label: "Listening",
-    value: "Nils Frahm",
-    meta: "All Melody · on repeat",
-  },
-  {
-    id: "playing",
-    label: "Playing",
-    value: "Hades II",
-    meta: "run 41 · still going",
+    id: "learning",
+    label: "Learning",
+    value: "Agentic workflows",
+    meta: "tool calling · evals · memory",
   },
   {
     id: "building",
     label: "Building",
-    value: "A small RSS reader",
-    meta: "private beta · very private",
+    value: "An AI/ML pipeline",
+    meta: "ingest · train · serve",
+  },
+  {
+    id: "reading",
+    label: "Reading",
+    value: "LLM systems",
+    meta: "papers first, source after",
+  },
+] as const;
+
+export const uses = [
+  {
+    id: "ml",
+    label: "Machine learning",
+    items: ["Python", "PyTorch", "scikit-learn", "pandas"],
+  },
+  {
+    id: "llm",
+    label: "LLM tooling",
+    items: ["LangGraph", "Hugging Face", "OpenAI API", "Ollama"],
+  },
+  {
+    id: "build",
+    label: "Build & ship",
+    items: ["Docker", "Git", "Linux", "Vercel"],
+  },
+  {
+    id: "daily",
+    label: "Daily",
+    items: ["VS Code", "Jupyter", "Obsidian", "Notion"],
   },
 ] as const;

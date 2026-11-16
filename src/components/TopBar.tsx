@@ -8,7 +8,8 @@ import { cx } from "../lib/cx";
 const nav = [
   { href: "#index", label: "Index", number: "01" },
   { href: "#now", label: "Now", number: "02" },
-  { href: "#contact", label: "Contact", number: "03" },
+  { href: "#uses", label: "Uses", number: "03" },
+  { href: "#contact", label: "Contact", number: "04" },
 ];
 
 const LocalTime = memo(function LocalTime() {

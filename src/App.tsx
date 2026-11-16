@@ -8,6 +8,7 @@ import { IndexList } from "./components/IndexList";
 import { Intro } from "./components/Intro";
 import { NowStrip } from "./components/NowStrip";
 import { TopBar } from "./components/TopBar";
+import { Uses } from "./components/Uses";
 import { ExitProvider } from "./lib/exit";
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
             <Hero hoveredId={hoveredId} onHover={setHoveredId} />
             <IndexList hoveredId={hoveredId} onHover={setHoveredId} />
             <NowStrip />
+            <Uses />
             <Contact />
           </main>
 

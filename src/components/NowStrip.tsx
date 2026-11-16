@@ -1,17 +1,5 @@
-import { memo } from "react";
 import { now } from "../data";
 import { cx } from "../lib/cx";
-
-const Equalizer = memo(function Equalizer() {
-  return (
-    <span className="flex h-[11px] items-end gap-[2px] text-rust" aria-hidden="true">
-      <span className="eq-bar" />
-      <span className="eq-bar" />
-      <span className="eq-bar" />
-      <span className="eq-bar" />
-    </span>
-  );
-});
 
 export function NowStrip() {
   return (
@@ -38,11 +26,13 @@ export function NowStrip() {
               )}
             >
               <div className="flex items-center gap-2.5">
-                {index === 0 ? (
-                  <Equalizer />
-                ) : (
-                  <span className="h-1.5 w-1.5 bg-rust" aria-hidden="true" />
-                )}
+                <span
+                  className={cx(
+                    "h-1.5 w-1.5 bg-rust text-rust",
+                    index === 0 && "status-ping relative rounded-full",
+                  )}
+                  aria-hidden="true"
+                />
                 <span className="meta-label text-rust">{item.label}</span>
               </div>
 
