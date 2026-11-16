@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { allLinks, profile } from "../data";
 
-const STORAGE_KEY = "enky-index:seen";
+const STORAGE_KEY = "harsh-shah:seen";
 
 function hasVisited() {
   try {
@@ -67,7 +67,8 @@ export function Intro() {
           <div className="flex flex-1 items-center justify-between gap-6">
             <div>
               <p className="font-serif text-[clamp(5rem,15vw,12rem)] leading-[0.78] tracking-tight">
-                e<span className="text-rust">.</span>
+                {profile.monogram.replace(/\.$/, "")}
+                <span className="text-rust">.</span>
               </p>
               <p className="meta-label mt-7 text-muted">Filing the index</p>
             </div>

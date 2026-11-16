@@ -1,6 +1,8 @@
 import { memo } from "react";
+import { Moon, Sun } from "@phosphor-icons/react";
 import { profile } from "../data";
 import { useLocalTime } from "../hooks/useLocalTime";
+import { useTheme } from "../hooks/useTheme";
 import { cx } from "../lib/cx";
 
 const nav = [
@@ -19,6 +21,27 @@ const LocalTime = memo(function LocalTime() {
         {profile.timeZoneLabel}
       </span>
     </span>
+  );
+});
+
+const ThemeToggle = memo(function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  const next = theme === "dark" ? "light" : "dark";
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={`Switch to ${next} theme`}
+      title={`Switch to ${next} theme`}
+      className="group flex h-7 w-7 items-center justify-center text-muted transition-colors duration-300 hover:text-ink"
+    >
+      {theme === "dark" ? (
+        <Sun size={15} weight="light" aria-hidden="true" />
+      ) : (
+        <Moon size={15} weight="light" aria-hidden="true" />
+      )}
+    </button>
   );
 });
 
@@ -64,6 +87,7 @@ export function TopBar() {
             <span className="meta-label hidden text-muted xl:inline">{profile.status}</span>
           </span>
           <span className="h-4 w-px bg-ink/15" />
+          <ThemeToggle />
           <LocalTime />
         </div>
       </div>

@@ -3,44 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>enky — personal index</title>
+    <title>Harsh Shah — personal index</title>
     <meta
       name="description"
-      content="Portfolio, writing, and everywhere else enky exists online, filed in one place."
+      content="Portfolio, writing, and everywhere else Harsh Shah exists online, filed in one place."
     />
     <meta name="theme-color" content="#f3efe7" />
-    <meta name="color-scheme" content="light" />
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("harsh-shah:theme");
+          const dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = dark ? "dark" : "light";
+          if (dark) {
+            document
+              .querySelector('meta[name="theme-color"]')
+              ?.setAttribute("content", "#171410");
+          }
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <meta name="color-scheme" content="light dark" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="enky — personal index" />
+    <meta property="og:title" content="Harsh Shah — personal index" />
     <meta
       property="og:description"
-      content="Portfolio, writing, and everywhere else enky exists online, filed in one place."
+      content="Portfolio, writing, and everywhere else Harsh Shah exists online, filed in one place."
     />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="enky — personal index" />
+    <meta name="twitter:title" content="Harsh Shah — personal index" />
     <meta
       name="twitter:description"
-      content="Portfolio, writing, and everywhere else enky exists online, filed in one place."
+      content="Portfolio, writing, and everywhere else Harsh Shah exists online, filed in one place."
     />
 
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314130F'/%3E%3Ctext x='30' y='46' font-family='Georgia,serif' font-size='40' font-style='italic' text-anchor='middle' fill='%23F3EFE7'%3Ee%3C/text%3E%3Ccircle cx='49' cy='42' r='3' fill='%23B04A26'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314130F'/%3E%3Ctext x='30' y='46' font-family='Georgia,serif' font-size='40' font-style='italic' text-anchor='middle' fill='%23F3EFE7'%3Eh%3C/text%3E%3Ccircle cx='49' cy='42' r='3' fill='%23B04A26'/%3E%3C/svg%3E"
     />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "enky",
-        "url": "https://enky.dev",
-        "email": "hello@enky.dev",
+        "name": "Harsh Shah",
+        "url": "https://harsh-shah.me",
+        "email": "contact@harsh-shah.me",
         "sameAs": [
-          "https://github.com/enky-yy",
-          "https://x.com/enky_yy",
-          "https://steamcommunity.com/id/enkyyy",
-          "https://open.spotify.com/user/enkyyy"
+          "https://github.com/harsh-shah",
+          "https://x.com/harshshah",
+          "https://steamcommunity.com/id/harshshah",
+          "https://open.spotify.com/user/harshshah"
         ]
       }
     </script>
@@ -52,8 +70,8 @@
         <p>This page needs JavaScript for the moving parts.</p>
         <p>
           You can still reach me at
-          <a href="mailto:hello@enky.dev" style="color: #b04a26">hello@enky.dev</a>, or find my
-          work at <a href="https://github.com/enky-yy" style="color: #b04a26">github.com/enky-yy</a>.
+          <a href="mailto:contact@harsh-shah.me" style="color: #b04a26">contact@harsh-shah.me</a>, or find my
+          work at <a href="https://github.com/harsh-shah" style="color: #b04a26">github.com/harsh-shah</a>.
         </p>
       </div>
     </noscript>

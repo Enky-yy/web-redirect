@@ -67,13 +67,19 @@ export function Hero({
             </p>
           </div>
 
-          <h1 className="mt-6 font-serif text-[clamp(4.4rem,12vw,9.25rem)] leading-[0.8] tracking-[-0.015em] md:mt-8">
-            <span className="mask-line" style={{ "--delay": "120ms" } as CSSProperties}>
-              <span>
-                {profile.name}
-                <span className="text-rust">.</span>
+          <h1 className="mt-6 font-serif text-[clamp(4.1rem,12.5vw,9.5rem)] leading-[0.84] tracking-[-0.015em] md:mt-8">
+            {profile.name.split(/\s+/).map((part, index, parts) => (
+              <span
+                key={`${part}-${index}`}
+                className="mask-line"
+                style={{ "--delay": `${120 + index * 90}ms` } as CSSProperties}
+              >
+                <span>
+                  {part}
+                  {index === parts.length - 1 ? <span className="text-rust">.</span> : null}
+                </span>
               </span>
-            </span>
+            ))}
           </h1>
 
           <p

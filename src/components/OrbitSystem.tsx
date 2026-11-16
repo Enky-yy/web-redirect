@@ -15,7 +15,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
-import { allLinks, orbitLinks, type LinkItem } from "../data";
+import { allLinks, orbitLinks, profile, type LinkItem } from "../data";
 import { useElementWidth } from "../hooks/useElementWidth";
 import { usePointerFine } from "../hooks/usePointerFine";
 import { useExitNavigation, shouldIntercept } from "../lib/exit";
@@ -321,7 +321,8 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
           <span className="absolute -inset-2 rounded-full border border-ink/20" />
           <span className="spin-slow absolute -inset-4 rounded-full border border-dashed border-rust/35" />
           <span className="font-serif text-[clamp(1.5rem,3.2vw,2.5rem)] italic leading-none">
-            e<span className="text-rust">.</span>
+            {profile.monogram.replace(/\.$/, "")}
+            <span className="text-rust">.</span>
           </span>
         </a>
       </motion.div>
