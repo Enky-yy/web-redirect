@@ -248,7 +248,7 @@ export function IndexList({
           aria-label="Filter by group"
           className="mt-5 flex flex-wrap items-baseline gap-2"
         >
-          <span className="meta-label mr-1 text-muted/60">Group</span>
+          <span className="meta-label mr-1 hidden text-muted/60 sm:inline">Group</span>
           <GroupChip
             label="All"
             count={total}
@@ -441,8 +441,8 @@ function LedgerRow({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       className={cx(
-        "ledger-row group grid scroll-mb-16 grid-cols-[2rem_minmax(0,1fr)_1.25rem] items-center gap-3 border-b border-ink/10 px-2 py-4",
-        "md:grid-cols-[3rem_minmax(0,1fr)_13rem_6rem_1.5rem] md:gap-4 md:py-[1.05rem]",
+        "ledger-row group grid scroll-mb-16 grid-cols-[2rem_minmax(0,1fr)_1.25rem] items-center gap-3 border-b border-ink/10 px-2 py-5",
+        "md:grid-cols-[3rem_minmax(0,1fr)_13rem_6rem_1.5rem] md:gap-4 md:py-6",
         "xl:grid-cols-[3rem_minmax(0,0.95fr)_11rem_minmax(0,1.05fr)_5rem_1.5rem]",
       )}
       onPointerEnter={() => onHover(link.id)}

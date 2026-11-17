@@ -195,10 +195,10 @@ export function Hero({
       </div>
 
       <div className="relative mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 border-t border-ink/10 px-5 py-4 md:px-8">
-        <span className="meta-label tabular text-muted">{profile.coordinates}</span>
+        <span className="meta-label tabular whitespace-nowrap text-muted">{profile.coordinates}</span>
         <a
           href="#index"
-          className="group flex items-center gap-2 text-muted transition-colors duration-300 hover:text-ink"
+          className="group hidden items-center gap-2 text-muted transition-colors duration-300 hover:text-ink sm:flex"
         >
           <span className="meta-label">Scroll to the ledger</span>
           <ArrowDown
@@ -208,7 +208,7 @@ export function Hero({
             aria-hidden="true"
           />
         </a>
-        <span className="meta-label tabular text-muted">
+        <span className="meta-label tabular whitespace-nowrap text-muted">
           {String(allLinks.length).padStart(2, "0")} destinations
         </span>
       </div>

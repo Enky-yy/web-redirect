@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #0b0a08;
-  --color-surface: #12100d;
-  --color-ink: #e9e3d6;
-  --color-muted: #8d8678;
-  --color-signal: #c6d17f;
+  --color-paper: #070a0f;
+  --color-surface: #0d131c;
+  --color-ink: #e8edf3;
+  --color-muted: #7d8a99;
+  --color-signal: #7fb0ea;
+  --color-glacier: #b9d1e6;
 
   --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
@@ -145,6 +146,21 @@
         transparent 1px
       );
     background-size: 38px 38px;
+  }
+
+  .panel-grid-ink {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-paper) 6%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-paper) 6%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
   }
 
   .ledger-row {

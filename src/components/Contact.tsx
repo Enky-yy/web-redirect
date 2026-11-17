@@ -1,7 +1,9 @@
+import { memo } from "react";
 import { motion, useReducedMotion, useSpring } from "motion/react";
 import { ArrowUpRight, Check, Copy } from "@phosphor-icons/react";
-import { profile } from "../data";
+import { allLinks, profile } from "../data";
 import { useCopy } from "../hooks/useCopy";
+import { useLocalTime } from "../hooks/useLocalTime";
 import { usePointerFine } from "../hooks/usePointerFine";
 import { cx } from "../lib/cx";
 
@@ -21,7 +23,7 @@ function CopyEmail() {
         : "Replies usually land within two days.";
 
   return (
-    <div className="flex flex-col items-start gap-3">
+    <div className="flex flex-col items-start gap-2.5">
       <motion.button
         type="button"
         onClick={() => copy(profile.email)}
@@ -40,12 +42,12 @@ function CopyEmail() {
         whileTap={{ scale: 0.98 }}
         style={{ x, y }}
         className={cx(
-          "inline-flex min-w-[158px] items-center justify-center gap-2.5 border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 active:translate-y-px",
+          "inline-flex min-w-[150px] items-center justify-center gap-2.5 border px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors duration-300 active:translate-y-px",
           state === "copied"
             ? "border-paper bg-paper text-signal"
             : state === "error"
               ? "border-paper text-paper"
-              : "border-paper/40 text-paper hover:bg-paper hover:text-signal",
+              : "border-paper/40 text-paper/80 hover:bg-paper hover:text-signal",
         )}
       >
         {state === "copied" ? (
@@ -59,7 +61,7 @@ function CopyEmail() {
       <p
         aria-live="polite"
         className={cx(
-          "font-mono text-[9px] uppercase tracking-[0.16em]",
+          "font-mono text-[8px] uppercase tracking-[0.16em]",
           state === "error" ? "text-paper underline" : "text-paper/60",
         )}
       >
@@ -69,98 +71,143 @@ function CopyEmail() {
   );
 }
 
-const details = [
-  { label: "Open to", value: "AI engineering internships" },
-  { label: "Also", value: "Open-source collaborations" },
-  { label: "Based", value: "Varanasi, India · IST" },
+const LocalTime = memo(function LocalTime() {
+  const time = useLocalTime(profile.timeZone);
+
+  return (
+    <span className="tabular font-mono text-[10px] leading-none tracking-[0.06em] text-paper/80">
+      {time}
+      <span className="ml-1.5 text-[8px] uppercase tracking-[0.14em] text-paper/60">
+        {profile.timeZoneLabel}
+      </span>
+    </span>
+  );
+});
+
+const channels = [
+  {
+    id: "mail",
+    label: "Mail",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+    external: false,
+  },
+  ...["github", "discord", "instagram"].map((id) => {
+    const link = allLinks.find((item) => item.id === id);
+    return {
+      id,
+      label: link?.name ?? id,
+      value: `${link?.handle ?? ""}@${(link?.name ?? id).toLowerCase()}`,
+      href: link?.href ?? "#",
+      external: true,
+    };
+  }),
 ];
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="on-signal relative bg-signal text-paper">
-      <div className="mx-auto w-full max-w-[1500px] px-5 py-16 md:px-8 md:py-24">
-        <div className="flex items-center justify-between border-b border-paper/20 pb-3.5">
-          <div className="flex items-center gap-3">
-            <span className="meta-label text-paper/65">02</span>
-            <span className="meta-label text-paper/65">Contact</span>
-          </div>
-          <span className="meta-label flex items-center gap-2 text-paper/65">
-            <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-paper text-paper" />
-            Channel open
-          </span>
-        </div>
+    <section id="contact" aria-labelledby="contact-title" className="relative border-b border-ink/10">
+      <div className="mx-auto w-full max-w-[1500px] px-5 py-14 md:px-8 md:py-20">
+        <div className="on-signal relative overflow-hidden border border-ink/20 bg-glacier text-paper">
+          <div
+            aria-hidden="true"
+            className="panel-grid-ink pointer-events-none absolute inset-0 opacity-70"
+          />
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
-          <div>
-            <h2
-              id="contact-title"
-              className="display text-[clamp(3rem,8.4vw,7rem)] uppercase leading-[0.82] tracking-[-0.045em]"
-            >
-              Say
-              <br />
-              hello<span className="text-paper/40">.</span>
-            </h2>
-
-            <p className="mt-7 max-w-[40ch] text-[15px] leading-[1.65] text-paper/70">
-              Open to AI engineering internships and open-source work. Mail is the fastest way
-              to reach me — if you would rather talk, say so and we can set up a call.
-            </p>
-
-            <div className="mt-9 flex flex-col items-start gap-5">
-              <a
-                href={`mailto:${profile.email}`}
-                className="link-sweep group inline-flex max-w-full items-baseline gap-3"
-              >
-                <span className="break-all font-mono text-[clamp(0.95rem,2.8vw,1.6rem)] leading-none tracking-[-0.01em]">
-                  {profile.email}
-                </span>
-                <ArrowUpRight
-                  size={18}
-                  weight="light"
-                  className="shrink-0 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </a>
-
-              {profile.whatsapp ? (
-                <a
-                  href={profile.whatsapp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/70 transition-colors duration-300 hover:text-paper"
-                >
-                  <span className="h-1 w-1 bg-paper" aria-hidden="true" />
-                  WhatsApp
-                  <ArrowUpRight
-                    size={12}
-                    weight="light"
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
-              ) : null}
-
-              <CopyEmail />
-            </div>
-          </div>
-
-          <dl className="border-t border-paper/25">
-            {details.map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col gap-1 border-b border-paper/20 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-              >
-                <dt className="meta-label text-paper/60">{item.label}</dt>
-                <dd className="font-mono text-[11px] leading-relaxed text-paper sm:text-right">
-                  {item.value}
-                </dd>
+          <div className="relative px-5 pt-6 md:px-10 md:pt-8">
+            <div className="flex items-center justify-between border-b border-paper/20 pb-3">
+              <div className="flex items-center gap-3">
+                <span className="meta-label text-paper/65">02</span>
+                <span className="meta-label text-paper/65">Contact</span>
               </div>
-            ))}
-            <div className="flex items-baseline justify-between gap-6 py-4">
-              <dt className="meta-label text-paper/60">Coordinates</dt>
-              <dd className="tabular font-mono text-[10px] text-paper/85">{profile.coordinates}</dd>
+              <span className="meta-label flex items-center gap-2 text-paper/65">
+                <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-paper text-paper" />
+                Channel open
+              </span>
             </div>
-          </dl>
+
+            <div className="grid gap-10 py-9 md:py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+              <div>
+                <h2
+                  id="contact-title"
+                  className="display text-[clamp(2.9rem,7vw,5.8rem)] uppercase leading-[0.82] tracking-[-0.045em]"
+                >
+                  Say
+                  <br />
+                  hello<span className="text-paper/30">.</span>
+                </h2>
+
+                <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-paper/70">
+                  Internships, collaborations, or something you are stuck on. Mail is fastest;
+                  Discord is a close second.
+                </p>
+
+                <div className="mt-7 flex flex-col items-start gap-4">
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="link-sweep group inline-flex max-w-full items-baseline gap-2.5"
+                  >
+                    <span className="break-all font-mono text-[clamp(0.9rem,2.4vw,1.2rem)] leading-none tracking-[-0.01em]">
+                      {profile.email}
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      weight="light"
+                      className="shrink-0 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </a>
+
+                  <CopyEmail />
+                </div>
+              </div>
+
+              <div className="lg:self-end">
+                <p className="meta-label text-paper/60">Direct channels</p>
+
+                <ul className="mt-3 border-t border-paper/20">
+                  {channels.map((channel) => (
+                    <li key={channel.id}>
+                      <a
+                        href={channel.href}
+                        target={channel.external ? "_blank" : undefined}
+                        rel={channel.external ? "noreferrer" : undefined}
+                        className="group flex items-baseline gap-3 border-b border-paper/20 py-3.5"
+                      >
+                        <span className="w-14 shrink-0 font-mono text-[8px] uppercase leading-none tracking-[0.18em] text-paper/60">
+                          {channel.label}
+                        </span>
+                        <span className="min-w-0 flex-1 truncate font-mono text-[11px] leading-none tracking-[0.01em] text-paper/90">
+                          {channel.value}
+                        </span>
+                        <ArrowUpRight
+                          size={13}
+                          weight="light"
+                          className="shrink-0 self-center text-paper/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-paper"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-4 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-paper/60">
+                  No forms. No funnels. Just mail.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col gap-2.5 border-t border-paper/20 px-5 py-3.5 md:flex-row md:items-center md:justify-between md:px-10">
+            <span className="meta-label tabular text-paper/60">
+              Varanasi, India — {profile.coordinates}
+            </span>
+            <div className="flex items-center gap-3">
+              <span className="meta-label hidden text-paper/60 sm:inline">Local time</span>
+              <span className="hidden h-3 w-px bg-paper/25 sm:block" aria-hidden="true" />
+              <LocalTime />
+            </div>
+          </div>
         </div>
       </div>
     </section>

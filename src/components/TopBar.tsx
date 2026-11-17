@@ -31,7 +31,7 @@ export function TopBar() {
   });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/92 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-[1500px] items-center justify-between gap-4 px-5 md:px-8">
         <a
           href="#top"

@@ -62,7 +62,7 @@ export function Intro() {
           <div className="meta-label flex items-center justify-between text-muted">
             <span className="flex items-center gap-3">
               <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-signal text-signal" />
-              {profile.name} — personal index
+              {profile.name} — link index
             </span>
             <span>Boot / 001</span>
           </div>
