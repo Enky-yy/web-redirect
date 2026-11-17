@@ -12,6 +12,8 @@ function hasVisited() {
   }
 }
 
+const pad = (value: number) => String(value).padStart(2, "0");
+
 export function Intro() {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(() => !reduce && !hasVisited());
@@ -24,10 +26,10 @@ export function Intro() {
     try {
       localStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // Private mode; the intro simply plays again next visit.
+      // Storage unavailable; the intro simply plays again next visit.
     }
 
-    const duration = 700;
+    const duration = 820;
     const start = performance.now();
     let frame = 0;
 
@@ -38,7 +40,7 @@ export function Intro() {
     };
 
     frame = requestAnimationFrame(tick);
-    const close = window.setTimeout(() => setOpen(false), 1040);
+    const close = window.setTimeout(() => setOpen(false), 1180);
 
     return () => {
       cancelAnimationFrame(frame);
@@ -52,47 +54,63 @@ export function Intro() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[70] flex flex-col justify-between bg-paper px-5 py-6 text-ink md:px-10 md:py-9"
+          className="fixed inset-0 z-[70] flex flex-col justify-between bg-paper px-5 py-6 text-ink md:px-8 md:py-8"
           initial={false}
           exit={{ y: "-100%" }}
-          transition={{ duration: 0.58, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.62, ease: [0.76, 0, 0.24, 1] }}
         >
           <div className="meta-label flex items-center justify-between text-muted">
-            <span>
-              {profile.name} — {profile.overline}
+            <span className="flex items-center gap-3">
+              <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-signal text-signal" />
+              {profile.name} — personal index
             </span>
-            <span>{profile.volume}</span>
+            <span>Boot / 001</span>
           </div>
 
-          <div className="flex flex-1 items-center justify-between gap-6">
+          <div className="grid flex-1 items-center gap-10 md:grid-cols-[1fr_auto]">
             <div>
-              <p className="font-serif text-[clamp(5rem,15vw,12rem)] leading-[0.78] tracking-tight">
-                {profile.monogram.replace(/\.$/, "")}
-                <span className="text-rust">.</span>
+              <p className="display text-[clamp(4rem,12vw,9rem)] uppercase leading-[0.8] tracking-[-0.05em]">
+                H<span className="outline-type">S</span>
+                <span className="text-signal">.</span>
               </p>
-              <p className="meta-label mt-7 text-muted">Filing the index</p>
+              <div className="mt-8 flex items-center gap-3">
+                <span className="h-px w-10 bg-signal" aria-hidden="true" />
+                <p className="meta-label text-muted">Mounting destinations</p>
+              </div>
+              <div className="mt-6 space-y-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink/45">
+                <p>
+                  <span className="text-signal">›</span> index.ready
+                </p>
+                <p>
+                  <span className="text-signal">›</span> orbit.sync
+                </p>
+                <p>
+                  <span className="text-signal">›</span> uplink.open
+                </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="tabular font-mono text-[clamp(2.25rem,6vw,4.5rem)] leading-none">
-                {String(count).padStart(2, "0")}
-                <span className="text-muted">/{String(total).padStart(2, "0")}</span>
+
+            <div className="text-left md:text-right">
+              <p className="tabular font-mono text-[clamp(2.5rem,6vw,4.5rem)] leading-none">
+                {pad(count)}
+                <span className="text-muted/60">/{pad(total)}</span>
               </p>
               <p className="meta-label mt-3 text-muted">Destinations</p>
             </div>
           </div>
 
           <div>
-            <div className="h-px w-full overflow-hidden bg-ink/15">
+            <div className="meta-label flex items-center justify-between text-muted">
+              <span>Calibrating orbit</span>
+              <span className="tabular">{Math.round(progress * 100)}%</span>
+            </div>
+            <div className="mt-3 h-px w-full overflow-hidden bg-ink/15">
               <motion.div
-                className="h-full origin-left bg-rust"
+                className="h-full origin-left bg-signal"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress }}
                 transition={{ duration: 0.2, ease: "linear" }}
               />
-            </div>
-            <div className="meta-label mt-4 flex items-center justify-between text-muted">
-              <span>Loading destinations</span>
-              <span className="tabular">{Math.round(progress * 100)}%</span>
             </div>
           </div>
         </motion.div>

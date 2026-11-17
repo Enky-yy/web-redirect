@@ -6,9 +6,8 @@ import { Grain } from "./components/Grain";
 import { Hero } from "./components/Hero";
 import { IndexList } from "./components/IndexList";
 import { Intro } from "./components/Intro";
-import { NowStrip } from "./components/NowStrip";
+import { Ticker } from "./components/Ticker";
 import { TopBar } from "./components/TopBar";
-import { Uses } from "./components/Uses";
 import { ExitProvider } from "./lib/exit";
 
 export default function App() {
@@ -30,9 +29,8 @@ export default function App() {
 
           <main>
             <Hero hoveredId={hoveredId} onHover={setHoveredId} />
+            <Ticker />
             <IndexList hoveredId={hoveredId} onHover={setHoveredId} />
-            <NowStrip />
-            <Uses />
             <Contact />
           </main>
 
