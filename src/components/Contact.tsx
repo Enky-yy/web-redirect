@@ -115,10 +115,6 @@ export function Contact() {
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-32 -top-40 h-[460px] w-[460px] rounded-full bg-signal/10 blur-[110px]"
-          />
-          <div
-            aria-hidden="true"
             className="panel-grid pointer-events-none absolute inset-0 opacity-80"
           />
 

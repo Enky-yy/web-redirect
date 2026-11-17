@@ -242,12 +242,12 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
           >
             <defs>
               <radialGradient id="scope-sweep" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="var(--color-ember)" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="var(--color-signal)" stopOpacity="0.32" />
                 <stop offset="60%" stopColor="var(--color-signal)" stopOpacity="0.08" />
                 <stop offset="100%" stopColor="var(--color-signal)" stopOpacity="0" />
               </radialGradient>
               <linearGradient id="scope-edge" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--color-ember)" stopOpacity="0.75" />
+                <stop offset="0%" stopColor="var(--color-signal)" stopOpacity="0.7" />
                 <stop offset="100%" stopColor="var(--color-signal)" stopOpacity="0.05" />
               </linearGradient>
             </defs>
@@ -338,7 +338,7 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
           <a
             href="#top"
             aria-label={`${profile.name} — back to top`}
-            className="absolute left-1/2 top-1/2 z-20 flex h-[19%] w-[19%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[linear-gradient(140deg,var(--color-signal),var(--color-ember))] text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.05] focus-visible:scale-[1.05] active:scale-[0.98]"
+            className="absolute left-1/2 top-1/2 z-20 flex h-[19%] w-[19%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-signal text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.05] focus-visible:scale-[1.05] active:scale-[0.98]"
           >
             <span className="absolute -inset-2 rounded-full border border-ink/15" aria-hidden="true" />
             <span className="spin-slow absolute -inset-4 rounded-full border border-dashed border-ink/20" aria-hidden="true" />
