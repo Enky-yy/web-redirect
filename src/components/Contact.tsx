@@ -108,10 +108,10 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative border-b border-ink/10">
       <div className="mx-auto w-full max-w-[1500px] px-5 py-14 md:px-8 md:py-20">
-        <div className="relative overflow-hidden border border-ink/15 bg-panel text-ink">
+        <div className="sunset-panel relative overflow-hidden border border-ink/15 text-ink">
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-px bg-signal"
+            className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-signal via-ember to-signal"
           />
           <div
             aria-hidden="true"
@@ -138,7 +138,7 @@ export function Contact() {
                 >
                   Say
                   <br />
-                  hello<span className="text-signal">.</span>
+                  hello<span className="text-ember">.</span>
                 </h2>
 
                 <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-ink/65">

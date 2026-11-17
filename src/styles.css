@@ -6,6 +6,7 @@
   --color-ink: #f4eef2;
   --color-muted: #9a8ea3;
   --color-signal: #ff3d7f;
+  --color-ember: #ff9a3d;
   --color-panel: #140b1a;
 
   --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
@@ -146,6 +147,21 @@
         transparent 1px
       );
     background-size: 38px 38px;
+  }
+
+  .sunset-panel {
+    background-color: var(--color-panel);
+    background-image:
+      radial-gradient(
+        120% 110% at 88% -8%,
+        color-mix(in srgb, var(--color-signal) 32%, transparent),
+        transparent 60%
+      ),
+      radial-gradient(
+        125% 115% at 8% 112%,
+        color-mix(in srgb, var(--color-ember) 30%, transparent),
+        transparent 62%
+      );
   }
 
   .panel-grid-ink {
