@@ -44,7 +44,7 @@ export const profile = {
   coordinates: "25.3176° N · 82.9739° E",
   timeZone: "Asia/Kolkata",
   timeZoneLabel: "IST",
-  email: "shahharsh4653@gmail.com",
+  email: "lets-talk@harsh-shah.me",
   whatsapp: "",
   status: "Open to internships",
   descriptors: [

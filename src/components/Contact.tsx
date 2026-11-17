@@ -44,10 +44,10 @@ function CopyEmail() {
         className={cx(
           "inline-flex min-w-[150px] items-center justify-center gap-2.5 border px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors duration-300 active:translate-y-px",
           state === "copied"
-            ? "border-paper bg-paper text-signal"
+            ? "border-signal bg-signal text-paper"
             : state === "error"
-              ? "border-paper text-paper"
-              : "border-paper/40 text-paper/80 hover:bg-paper hover:text-signal",
+              ? "border-signal text-signal"
+              : "border-ink/30 text-ink/75 hover:border-signal hover:bg-signal hover:text-paper",
         )}
       >
         {state === "copied" ? (
@@ -62,7 +62,7 @@ function CopyEmail() {
         aria-live="polite"
         className={cx(
           "font-mono text-[8px] uppercase tracking-[0.16em]",
-          state === "error" ? "text-paper underline" : "text-paper/60",
+          state === "error" ? "text-signal underline" : "text-ink/50",
         )}
       >
         {note}
@@ -75,9 +75,9 @@ const LocalTime = memo(function LocalTime() {
   const time = useLocalTime(profile.timeZone);
 
   return (
-    <span className="tabular font-mono text-[10px] leading-none tracking-[0.06em] text-paper/80">
+    <span className="tabular font-mono text-[10px] leading-none tracking-[0.06em] text-ink/80">
       {time}
-      <span className="ml-1.5 text-[8px] uppercase tracking-[0.14em] text-paper/60">
+      <span className="ml-1.5 text-[8px] uppercase tracking-[0.14em] text-ink/45">
         {profile.timeZoneLabel}
       </span>
     </span>
@@ -108,20 +108,32 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative border-b border-ink/10">
       <div className="mx-auto w-full max-w-[1500px] px-5 py-14 md:px-8 md:py-20">
-        <div className="on-signal relative overflow-hidden border border-ink/20 bg-glacier text-paper">
+        <div className="relative overflow-hidden border border-ink/15 bg-panel text-ink">
           <div
             aria-hidden="true"
-            className="panel-grid-ink pointer-events-none absolute inset-0 opacity-70"
+            className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-signal via-ember to-signal"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-32 -top-40 h-[460px] w-[460px] rounded-full bg-signal/15 blur-[110px]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-44 -left-24 h-[420px] w-[420px] rounded-full bg-ember/10 blur-[110px]"
+          />
+          <div
+            aria-hidden="true"
+            className="panel-grid pointer-events-none absolute inset-0 opacity-80"
           />
 
           <div className="relative px-5 pt-6 md:px-10 md:pt-8">
-            <div className="flex items-center justify-between border-b border-paper/20 pb-3">
+            <div className="flex items-center justify-between border-b border-ink/15 pb-3">
               <div className="flex items-center gap-3">
-                <span className="meta-label text-paper/65">02</span>
-                <span className="meta-label text-paper/65">Contact</span>
+                <span className="meta-label text-ink/50">02</span>
+                <span className="meta-label text-ink/50">Contact</span>
               </div>
-              <span className="meta-label flex items-center gap-2 text-paper/65">
-                <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-paper text-paper" />
+              <span className="meta-label flex items-center gap-2 text-ink/50">
+                <span className="status-ping relative block h-1.5 w-1.5 rounded-full bg-signal text-signal" />
                 Channel open
               </span>
             </div>
@@ -134,10 +146,12 @@ export function Contact() {
                 >
                   Say
                   <br />
-                  hello<span className="text-paper/30">.</span>
+                  <span className="bg-gradient-to-r from-signal via-signal to-ember bg-clip-text text-transparent">
+                    hello.
+                  </span>
                 </h2>
 
-                <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-paper/70">
+                <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-ink/65">
                   Internships, collaborations, or something you are stuck on. Mail is fastest;
                   Discord is a close second.
                 </p>
@@ -163,27 +177,27 @@ export function Contact() {
               </div>
 
               <div className="lg:self-end">
-                <p className="meta-label text-paper/60">Direct channels</p>
+                <p className="meta-label text-ink/50">Direct channels</p>
 
-                <ul className="mt-3 border-t border-paper/20">
+                <ul className="mt-3 border-t border-ink/15">
                   {channels.map((channel) => (
                     <li key={channel.id}>
                       <a
                         href={channel.href}
                         target={channel.external ? "_blank" : undefined}
                         rel={channel.external ? "noreferrer" : undefined}
-                        className="group flex items-baseline gap-3 border-b border-paper/20 py-3.5"
+                        className="group flex items-baseline gap-3 border-b border-ink/15 py-3.5"
                       >
-                        <span className="w-14 shrink-0 font-mono text-[8px] uppercase leading-none tracking-[0.18em] text-paper/60">
+                        <span className="w-14 shrink-0 font-mono text-[8px] uppercase leading-none tracking-[0.18em] text-ink/50">
                           {channel.label}
                         </span>
-                        <span className="min-w-0 flex-1 truncate font-mono text-[11px] leading-none tracking-[0.01em] text-paper/90">
+                        <span className="min-w-0 flex-1 truncate font-mono text-[11px] leading-none tracking-[0.01em] text-ink/90">
                           {channel.value}
                         </span>
                         <ArrowUpRight
                           size={13}
                           weight="light"
-                          className="shrink-0 self-center text-paper/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-paper"
+                          className="shrink-0 self-center text-ink/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
                           aria-hidden="true"
                         />
                       </a>
@@ -191,20 +205,21 @@ export function Contact() {
                   ))}
                 </ul>
 
-                <p className="mt-4 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-paper/60">
+                <p className="mt-4 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-ink/50">
                   No forms. No funnels. Just mail.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="relative flex flex-col gap-2.5 border-t border-paper/20 px-5 py-3.5 md:flex-row md:items-center md:justify-between md:px-10">
-            <span className="meta-label tabular text-paper/60">
-              Varanasi, India — {profile.coordinates}
+          <div className="relative flex flex-col gap-2.5 border-t border-ink/15 px-5 py-3.5 md:flex-row md:items-center md:justify-between md:px-10">
+            <span className="meta-label tabular text-ink/50">
+              <span className="hidden sm:inline">Varanasi, India — </span>
+              {profile.coordinates}
             </span>
             <div className="flex items-center gap-3">
-              <span className="meta-label hidden text-paper/60 sm:inline">Local time</span>
-              <span className="hidden h-3 w-px bg-paper/25 sm:block" aria-hidden="true" />
+              <span className="meta-label hidden text-ink/45 sm:inline">Local time</span>
+              <span className="hidden h-3 w-px bg-ink/20 sm:block" aria-hidden="true" />
               <LocalTime />
             </div>
           </div>

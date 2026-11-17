@@ -119,7 +119,7 @@ export function Hero({
                   style={{ "--delay": `${120 + index * 90}ms` } as CSSProperties}
                 >
                   <span>
-                    <span className={last ? "outline-type" : undefined}>{part}</span>
+                    <span className={last ? "outline-signal" : undefined}>{part}</span>
                     {last ? <span className="text-signal">.</span> : null}
                   </span>
                 </span>

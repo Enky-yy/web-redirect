@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #070a0f;
-  --color-surface: #0d131c;
-  --color-ink: #e8edf3;
-  --color-muted: #7d8a99;
-  --color-signal: #7fb0ea;
-  --color-glacier: #b9d1e6;
+  --color-paper: #08060c;
+  --color-surface: #110b16;
+  --color-ink: #f4eef2;
+  --color-muted: #9a8ea3;
+  --color-signal: #ff3d7f;
+  --color-ember: #ff9a3d;
+  --color-panel: #140b1a;
 
   --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
@@ -93,6 +94,11 @@
   .outline-type {
     color: transparent;
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 82%, transparent);
+  }
+
+  .outline-signal {
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-signal) 72%, transparent);
   }
 
   .reveal {
