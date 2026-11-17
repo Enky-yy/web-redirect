@@ -96,11 +96,6 @@
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 82%, transparent);
   }
 
-  .outline-signal {
-    color: transparent;
-    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-signal) 72%, transparent);
-  }
-
   .reveal {
     opacity: 0;
     transform: translateY(14px);

@@ -111,15 +111,11 @@ export function Contact() {
         <div className="relative overflow-hidden border border-ink/15 bg-panel text-ink">
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-signal via-ember to-signal"
+            className="absolute inset-x-0 top-0 h-px bg-signal"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-32 -top-40 h-[460px] w-[460px] rounded-full bg-signal/15 blur-[110px]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-44 -left-24 h-[420px] w-[420px] rounded-full bg-ember/10 blur-[110px]"
+            className="pointer-events-none absolute -right-32 -top-40 h-[460px] w-[460px] rounded-full bg-signal/10 blur-[110px]"
           />
           <div
             aria-hidden="true"
@@ -146,9 +142,7 @@ export function Contact() {
                 >
                   Say
                   <br />
-                  <span className="bg-gradient-to-r from-signal via-signal to-ember bg-clip-text text-transparent">
-                    hello.
-                  </span>
+                  hello<span className="text-signal">.</span>
                 </h2>
 
                 <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-ink/65">

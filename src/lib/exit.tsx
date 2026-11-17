@@ -73,7 +73,7 @@ function ExitWipe({ target }: { target: ExitTarget }) {
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed inset-0 z-[80] flex flex-col justify-between overflow-hidden bg-[linear-gradient(168deg,var(--color-signal)_0%,var(--color-signal)_58%,var(--color-ember)_100%)] px-5 py-6 text-paper md:px-8 md:py-8"
+      className="fixed inset-0 z-[80] flex flex-col justify-between overflow-hidden bg-signal px-5 py-6 text-paper md:px-8 md:py-8"
       initial={{ y: "100%" }}
       animate={{ y: 0 }}
       exit={{ y: "-100%" }}
