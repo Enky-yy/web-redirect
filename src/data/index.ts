@@ -42,6 +42,8 @@ export const profile = {
   location: "Varanasi, India",
   based: "Based in Varanasi. Working everywhere.",
   coordinates: "25.3176° N · 82.9739° E",
+  latitude: 25.3176,
+  longitude: 82.9739,
   timeZone: "Asia/Kolkata",
   timeZoneLabel: "IST",
   email: "lets-talk@harsh-shah.me",

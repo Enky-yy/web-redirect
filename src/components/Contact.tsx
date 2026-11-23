@@ -6,6 +6,7 @@ import { useCopy } from "../hooks/useCopy";
 import { useLocalTime } from "../hooks/useLocalTime";
 import { usePointerFine } from "../hooks/usePointerFine";
 import { cx } from "../lib/cx";
+import { MeridianGlobe } from "./MeridianGlobe";
 
 function CopyEmail() {
   const { state, copy } = useCopy();
@@ -130,7 +131,7 @@ export function Contact() {
               </span>
             </div>
 
-            <div className="grid gap-10 py-9 md:py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <div className="grid gap-10 py-9 md:py-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
               <div>
                 <h2
                   id="contact-title"
@@ -166,7 +167,9 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="lg:self-end">
+              <div>
+                <MeridianGlobe />
+
                 <p className="meta-label text-ink/50">Direct channels</p>
 
                 <ul className="mt-3 border-t border-ink/15">
