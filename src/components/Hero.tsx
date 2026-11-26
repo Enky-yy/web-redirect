@@ -49,32 +49,38 @@ function MagneticCTA() {
   const y = useSpring(0, { stiffness: 200, damping: 18, mass: 0.4 });
 
   return (
-    <motion.a
-      href="#index"
-      style={{ x, y }}
-      onPointerMove={(event) => {
-        if (reduce) return;
-        const rect = event.currentTarget.getBoundingClientRect();
-        const dx = (event.clientX - rect.left - rect.width / 2) * 0.2;
-        const dy = (event.clientY - rect.top - rect.height / 2) * 0.3;
-        x.set(Math.max(-6, Math.min(6, dx)));
-        y.set(Math.max(-5, Math.min(5, dy)));
-      }}
-      onPointerLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
-      className="group inline-flex items-center gap-3 border border-ink/25 bg-ink/[0.02] px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink transition-colors duration-300 hover:border-signal hover:text-signal active:translate-y-px"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden="true" />
-      Open the index
-      <ArrowDown
-        size={13}
-        weight="light"
-        className="transition-transform duration-300 group-hover:translate-y-0.5"
+    <div className="group relative inline-block">
+      <div
         aria-hidden="true"
+        className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-signal to-purple-600 opacity-50 blur transition duration-700 group-hover:opacity-100 group-hover:duration-200"
       />
-    </motion.a>
+      <motion.a
+        href="#index"
+        style={{ x, y }}
+        onPointerMove={(event) => {
+          if (reduce) return;
+          const rect = event.currentTarget.getBoundingClientRect();
+          const dx = (event.clientX - rect.left - rect.width / 2) * 0.2;
+          const dy = (event.clientY - rect.top - rect.height / 2) * 0.3;
+          x.set(Math.max(-6, Math.min(6, dx)));
+          y.set(Math.max(-5, Math.min(5, dy)));
+        }}
+        onPointerLeave={() => {
+          x.set(0);
+          y.set(0);
+        }}
+        className="relative inline-flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink transition-colors duration-300 group-hover:text-signal active:translate-y-px"
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden="true" />
+        Open the index
+        <ArrowDown
+          size={13}
+          weight="light"
+          className="transition-transform duration-300 group-hover:translate-y-0.5"
+          aria-hidden="true"
+        />
+      </motion.a>
+    </div>
   );
 }
 
@@ -109,7 +115,7 @@ export function Hero({
             </p>
           </div>
 
-          <h1 className="display mt-7 text-[clamp(3.6rem,8.4vw,7.4rem)] uppercase leading-[0.8] tracking-[-0.045em] md:mt-8">
+          <h1 className="display mt-7 text-[clamp(3.6rem,8.4vw,7.4rem)] leading-[0.88] tracking-[-0.04em] md:mt-8">
             {parts.map((part, index) => {
               const last = index === parts.length - 1;
               return (
@@ -119,7 +125,7 @@ export function Hero({
                   style={{ "--delay": `${120 + index * 90}ms` } as CSSProperties}
                 >
                   <span>
-                    <span className={last ? "outline-type" : undefined}>{part}</span>
+                    <span className={last ? "brand-gradient-text" : undefined}>{part}</span>
                     {last ? <span className="text-signal">.</span> : null}
                   </span>
                 </span>
@@ -128,7 +134,7 @@ export function Hero({
           </h1>
 
           <p
-            className="reveal mt-7 max-w-[46ch] text-[15px] leading-[1.7] text-ink/60 md:mt-8 md:text-[17px]"
+            className="reveal mt-7 max-w-[46ch] text-[15px] leading-[1.7] text-body md:mt-8 md:text-[17px]"
             style={{ "--delay": "260ms" } as CSSProperties}
           >
             {profile.tagline}
@@ -181,7 +187,7 @@ export function Hero({
             <MagneticCTA />
             <a
               href={`mailto:${profile.email}`}
-              className="link-sweep meta-label inline-flex items-center gap-2 text-muted transition-colors duration-300 hover:text-ink"
+              className="link-underline meta-label inline-flex items-center gap-2 py-1 text-muted transition-colors duration-300 hover:text-ink"
             >
               Email me
               <ArrowUpRight size={12} weight="light" aria-hidden="true" />

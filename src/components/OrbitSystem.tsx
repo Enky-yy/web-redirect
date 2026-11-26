@@ -205,23 +205,28 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
         </span>
       </div>
 
-      <div
-        ref={plateRef}
-        role="group"
-        aria-label="Featured destinations on a rotating scope. Drag with a mouse to spin it; the full index below is keyboard accessible."
-        className={cx(
-          "relative aspect-square w-full touch-pan-y select-none border border-ink/15 bg-surface/50",
-          isDragging ? "cursor-grabbing" : "cursor-grab",
-        )}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onPointerLeave={(event) => {
-          if (dragging.current) endDrag(event);
-        }}
-        onClickCapture={onClickCapture}
-      >
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#F20089]/15 via-[#D100D1]/10 to-[#2D00F7]/15 opacity-70 blur-xl"
+        />
+        <div
+          ref={plateRef}
+          role="group"
+          aria-label="Featured destinations on a rotating scope. Drag with a mouse to spin it; the full index below is keyboard accessible."
+          className={cx(
+            "relative aspect-square w-full touch-pan-y select-none overflow-hidden rounded-2xl border border-border bg-surface/90",
+            isDragging ? "cursor-grabbing" : "cursor-grab",
+          )}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={(event) => {
+            if (dragging.current) endDrag(event);
+          }}
+          onClickCapture={onClickCapture}
+        >
         <div className="panel-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
         <span aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-3.5 w-3.5 border-l border-t border-signal/70" />
@@ -338,16 +343,17 @@ export function OrbitSystem({ hoveredId, onHover }: OrbitProps) {
           <a
             href="#top"
             aria-label={`${profile.name} — back to top`}
-            className="absolute left-1/2 top-1/2 z-20 flex h-[19%] w-[19%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-signal text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.05] focus-visible:scale-[1.05] active:scale-[0.98]"
+            className="absolute left-1/2 top-1/2 z-20 flex h-[19%] w-[19%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-signal text-white shadow-[0_0_24px_rgba(222,29,141,0.35)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.05] focus-visible:scale-[1.05] active:scale-[0.98]"
           >
             <span className="absolute -inset-2 rounded-full border border-ink/15" aria-hidden="true" />
             <span className="spin-slow absolute -inset-4 rounded-full border border-dashed border-ink/20" aria-hidden="true" />
             <span className="display text-[clamp(1.1rem,2.6vw,1.75rem)] leading-none tracking-[-0.06em]">
               {profile.monogram.replace(/\.$/, "")}
-              <span className="text-paper/50">.</span>
+              <span className="text-white/60">.</span>
             </span>
           </a>
         </motion.div>
+        </div>
       </div>
 
       <div className="mt-2.5 flex items-center justify-between px-0.5">
@@ -407,9 +413,9 @@ const OrbitNode = memo(function OrbitNode({
           navigate({ href: link.href, name: link.name, index });
         }}
         className={cx(
-          "group relative flex h-full w-full cursor-pointer items-center justify-center rounded-full border bg-surface text-ink/75 transition-[transform,background-color,border-color,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.08] hover:border-signal hover:bg-paper hover:text-signal focus-visible:scale-[1.08] focus-visible:border-signal focus-visible:text-signal",
+          "group relative flex h-full w-full cursor-pointer items-center justify-center rounded-full border bg-surface text-ink/80 transition-[transform,background-color,border-color,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.08] hover:border-signal hover:bg-paper hover:text-signal focus-visible:scale-[1.08] focus-visible:border-signal focus-visible:text-signal",
           highlighted
-            ? "scale-[1.08] border-signal bg-signal text-paper hover:bg-signal hover:text-paper"
+            ? "scale-[1.08] border-signal bg-signal text-white hover:bg-signal hover:text-white"
             : "border-ink/20",
         )}
       >
@@ -436,7 +442,7 @@ const OrbitNode = memo(function OrbitNode({
         <span
           aria-hidden="true"
           className={cx(
-            "pointer-events-none absolute left-1/2 top-[calc(100%+9px)] -translate-x-1/2 whitespace-nowrap border border-ink/15 bg-ink px-2 py-1 font-mono text-[8px] uppercase tracking-[0.18em] text-paper transition-opacity duration-300",
+            "pointer-events-none absolute left-1/2 top-[calc(100%+9px)] -translate-x-1/2 whitespace-nowrap rounded-md border border-border bg-ink px-2 py-1 font-mono text-[8px] uppercase tracking-[0.18em] text-paper transition-opacity duration-300",
             highlighted
               ? "opacity-100"
               : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100",

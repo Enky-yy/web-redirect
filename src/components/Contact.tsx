@@ -43,12 +43,12 @@ function CopyEmail() {
         whileTap={{ scale: 0.98 }}
         style={{ x, y }}
         className={cx(
-          "inline-flex min-w-[150px] items-center justify-center gap-2.5 border px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors duration-300 active:translate-y-px",
+          "inline-flex min-w-[150px] items-center justify-center gap-2.5 rounded-lg border px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors duration-300 active:translate-y-px",
           state === "copied"
-            ? "border-signal bg-signal text-paper"
+            ? "border-signal bg-signal text-white"
             : state === "error"
               ? "border-signal text-signal"
-              : "border-ink/30 text-ink/75 hover:border-signal hover:bg-signal hover:text-paper",
+              : "border-border bg-surface text-body hover:border-signal hover:bg-signal hover:text-white",
         )}
       >
         {state === "copied" ? (
@@ -109,11 +109,16 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative border-b border-ink/10">
       <div className="mx-auto w-full max-w-[1500px] px-5 py-14 md:px-8 md:py-20">
-        <div className="sunset-panel relative overflow-hidden border border-ink/15 text-ink">
+        <div className="relative">
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-signal via-ember to-signal"
+            className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#F20089]/20 via-[#D100D1]/15 to-[#2D00F7]/20 opacity-60 blur-xl"
           />
+          <div className="sunset-panel relative overflow-hidden rounded-2xl border border-border text-ink">
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#F20089] via-[#D100D1] to-[#2D00F7]"
+            />
           <div
             aria-hidden="true"
             className="panel-grid pointer-events-none absolute inset-0 opacity-80"
@@ -135,14 +140,15 @@ export function Contact() {
               <div>
                 <h2
                   id="contact-title"
-                  className="display text-[clamp(2.9rem,7vw,5.8rem)] uppercase leading-[0.82] tracking-[-0.045em]"
+                  className="display text-[clamp(2.9rem,7vw,5.8rem)] leading-[0.86] tracking-[-0.04em]"
                 >
                   Say
                   <br />
-                  hello<span className="text-ember">.</span>
+                  <span className="brand-gradient-text">hello</span>
+                  <span className="text-signal">.</span>
                 </h2>
 
-                <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-ink/65">
+                <p className="mt-6 max-w-[34ch] text-[14px] leading-[1.65] text-body">
                   Internships, collaborations, or something you are stuck on. Mail is fastest;
                   Discord is a close second.
                 </p>
@@ -150,7 +156,7 @@ export function Contact() {
                 <div className="mt-7 flex flex-col items-start gap-4">
                   <a
                     href={`mailto:${profile.email}`}
-                    className="link-sweep group inline-flex max-w-full items-baseline gap-2.5"
+                    className="link-underline group inline-flex max-w-full items-baseline gap-2.5"
                   >
                     <span className="break-all font-mono text-[clamp(0.9rem,2.4vw,1.2rem)] leading-none tracking-[-0.01em]">
                       {profile.email}
@@ -215,6 +221,7 @@ export function Contact() {
               <span className="hidden h-3 w-px bg-ink/20 sm:block" aria-hidden="true" />
               <LocalTime />
             </div>
+          </div>
           </div>
         </div>
       </div>

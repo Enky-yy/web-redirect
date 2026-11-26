@@ -184,7 +184,7 @@ export function IndexList({
           </div>
 
           <div className="flex w-full flex-col gap-2.5 lg:w-[320px]">
-            <div className="flex w-full items-center gap-3 border border-ink/15 bg-surface/50 px-3 py-2.5 transition-colors duration-300 focus-within:border-signal">
+            <div className="flex w-full items-center gap-3 rounded-lg border border-border bg-surface px-3.5 py-2.5 transition-colors duration-300 focus-within:border-signal">
               <MagnifyingGlass
                 size={13}
                 weight="light"
@@ -224,7 +224,7 @@ export function IndexList({
                   <X size={12} weight="light" />
                 </button>
               ) : (
-                <kbd className="shrink-0 border border-ink/15 px-1.5 py-0.5 font-mono text-[8px] leading-none text-muted">
+                <kbd className="shrink-0 rounded bg-well px-1.5 py-0.5 font-mono text-[8px] leading-none text-muted ring-1 ring-border">
                   ⌘K
                 </kbd>
               )}
@@ -312,7 +312,7 @@ export function IndexList({
                   onHover(null);
                   inputRef.current?.focus();
                 }}
-                className="group mt-7 inline-flex items-center gap-2 border border-ink/20 px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] text-ink transition-colors duration-300 hover:border-signal hover:text-signal active:translate-y-px"
+                className="group mt-7 inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.18em] text-ink transition-colors duration-300 hover:border-signal hover:text-signal active:translate-y-px"
               >
                 Reset the filter
                 <ArrowRight
@@ -394,10 +394,10 @@ function GroupChip({
       aria-pressed={active}
       onClick={onClick}
       className={cx(
-        "inline-flex items-baseline gap-2 border px-2.5 py-1.5 font-mono text-[9px] uppercase leading-none tracking-[0.16em] transition-colors duration-300 active:translate-y-px",
+        "inline-flex items-baseline gap-2 rounded-full border px-3 py-1.5 font-mono text-[9px] uppercase leading-none tracking-[0.16em] transition-colors duration-300 active:translate-y-px",
         active
           ? "border-signal bg-signal/10 text-signal"
-          : "border-ink/15 text-muted hover:border-ink/30 hover:text-ink",
+          : "border-border bg-surface/60 text-muted hover:border-ink/30 hover:bg-well hover:text-ink",
       )}
     >
       {label}

@@ -7,9 +7,9 @@ export function Footer() {
   return (
     <footer className="bg-paper">
       <div className="mx-auto w-full max-w-[1500px] px-5 md:px-8">
-        <div className="flex flex-col gap-6 border-t border-ink/10 py-7 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-6 border-t border-border py-7 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3.5">
-            <span className="flex h-8 w-8 items-center justify-center border border-ink/20 font-mono text-[9px] uppercase leading-none tracking-[0.08em] text-ink">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-surface font-mono text-[9px] uppercase leading-none tracking-[0.08em] text-ink">
               HS
             </span>
             <p className="font-mono text-[9px] uppercase leading-relaxed tracking-[0.16em] text-muted">
@@ -25,11 +25,11 @@ export function Footer() {
 
           <div className="flex items-center gap-6">
             <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-muted/70 sm:inline">
-              Set in Bricolage Grotesque &amp; Geist
+              Set in Inter &amp; Geist Mono
             </span>
             <a
               href="#top"
-              className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-muted transition-colors duration-300 hover:text-signal"
+              className="link-underline group flex items-center gap-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-muted transition-colors duration-300 hover:text-signal"
             >
               Back to top
               <ArrowUp

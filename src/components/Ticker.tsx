@@ -2,9 +2,9 @@ import { stack } from "../data";
 
 export function Ticker() {
   return (
-    <section aria-labelledby="ticker-label" className="border-b border-ink/10 bg-surface/40">
+    <section aria-labelledby="ticker-label" className="border-b border-border bg-well/70">
       <div className="flex items-stretch">
-        <div className="hidden shrink-0 items-center gap-2 border-r border-ink/10 px-5 md:flex md:px-8">
+        <div className="hidden shrink-0 items-center gap-2 border-r border-border px-5 md:flex md:px-8">
           <span className="block h-1 w-1 bg-signal" aria-hidden="true" />
           <h2 id="ticker-label" className="meta-label text-signal">
             Focus

@@ -1,17 +1,52 @@
 @import "tailwindcss";
 
-@theme {
-  --color-paper: #08060c;
-  --color-surface: #110b16;
-  --color-ink: #f4eef2;
-  --color-muted: #9a8ea3;
-  --color-signal: #ff3d7f;
-  --color-ember: #ff9a3d;
-  --color-panel: #140b1a;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+@theme {
+  --color-paper: var(--theme-paper);
+  --color-surface: var(--theme-surface);
+  --color-well: var(--theme-well);
+  --color-border: var(--theme-border);
+  --color-ink: var(--theme-ink);
+  --color-body: var(--theme-body);
+  --color-muted: var(--theme-muted);
+  --color-signal: #de1d8d;
+  --color-signal-hover: #be1588;
+  --color-ember: #a100f2;
+  --color-panel: var(--theme-panel);
+
+  --color-brand-100: #fdd1d9;
+  --color-brand-200: #fba4bc;
+  --color-brand-300: #f575a5;
+  --color-brand-400: #eb519b;
+  --color-brand-500: #de1d8d;
+  --color-brand-600: #be1588;
+
+  --font-display: "Inter", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --theme-paper: #fef7fa;
+  --theme-surface: #fffafc;
+  --theme-well: #fef3f8;
+  --theme-border: #fbe6ee;
+  --theme-ink: #33202b;
+  --theme-body: #4e3a45;
+  --theme-muted: #6b5b64;
+  --theme-panel: #fffafc;
+}
+
+.dark {
+  --theme-paper: #000000;
+  --theme-surface: #0a0a0a;
+  --theme-well: #171717;
+  --theme-border: #262626;
+  --theme-ink: #f5f5f5;
+  --theme-body: #d4d4d4;
+  --theme-muted: #a3a3a3;
+  --theme-panel: #050505;
 }
 
 @layer base {
@@ -74,7 +109,7 @@
 @layer components {
   .display {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 800;
     letter-spacing: -0.03em;
   }
 
@@ -93,7 +128,53 @@
 
   .outline-type {
     color: transparent;
-    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 82%, transparent);
+    -webkit-text-stroke: 1.25px color-mix(in srgb, var(--color-ink) 78%, transparent);
+  }
+
+  .brand-gradient-text {
+    background-image: linear-gradient(135deg, #f20089 0%, #d100d1 52%, #a100f2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 3px;
+    right: 0;
+    background: linear-gradient(to right, #d946ef, #ec4899);
+    transition: width 0.25s ease;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .special-underline {
+    background-image: linear-gradient(to right, var(--color-signal), var(--color-signal));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0.16em;
+    padding-bottom: 0.1em;
+    transition:
+      background-size 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .special-underline:hover,
+  .special-underline:focus-visible {
+    background-size: 100% 100%;
+    color: #ffffff;
   }
 
   .reveal {
@@ -153,13 +234,13 @@
     background-color: var(--color-panel);
     background-image:
       radial-gradient(
-        120% 110% at 88% -8%,
-        color-mix(in srgb, var(--color-signal) 32%, transparent),
+        115% 105% at 88% -8%,
+        color-mix(in srgb, #f20089 22%, transparent),
         transparent 60%
       ),
       radial-gradient(
-        125% 115% at 8% 112%,
-        color-mix(in srgb, var(--color-ember) 30%, transparent),
+        120% 110% at 8% 112%,
+        color-mix(in srgb, #2d00f7 18%, transparent),
         transparent 62%
       );
   }
@@ -180,15 +261,19 @@
   }
 
   .ledger-row {
-    transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      border-radius 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .ledger-row:hover {
-    background-color: color-mix(in srgb, var(--color-ink) 3.5%, transparent);
+    background-color: var(--color-well);
+    border-radius: 0.75rem;
   }
 
   .ledger-row[data-highlighted] {
-    background-color: color-mix(in srgb, var(--color-ink) 5%, transparent);
+    background-color: color-mix(in srgb, var(--color-signal) 8%, var(--color-well));
+    border-radius: 0.75rem;
   }
 
   .ledger-row .ledger-name,
@@ -247,8 +332,8 @@
 @layer utilities {
   .grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    mix-blend-mode: screen;
+    opacity: 0.025;
+    mix-blend-mode: overlay;
     z-index: 100;
   }
 
